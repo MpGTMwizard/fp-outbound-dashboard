@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>FutureProofing Outbound</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+/* Layout: one soft column of rounded cards; headline pebbles, a trend chart, campaign bars, A/B and recruiting below */
+:root{
+  --bg:#F2F6FB; --paper:#FFFFFF; --ink:#1F2A3D; --muted:#5E6B80; --line:#DCE4EF;
+  --pink:#E8577A; --pink-soft:#FDE6EC; --mint:#1E9E8F; --mint-soft:#DDF4F0;
+  --sun:#F2B33D; --sun-soft:#FFF2D6; --sky:#4C7BD9; --sky-soft:#E3ECFC;
+  --display:"Fredoka","Trebuchet MS",system-ui,sans-serif;
+  --body:"Nunito","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#141A26; --paper:#1C2434; --ink:#EAF0FA; --muted:#A3AEC2; --line:#2C3850;
+  --pink:#FF7F9C; --pink-soft:#3A2230; --mint:#4FD1C0; --mint-soft:#183632;
+  --sun:#F7C463; --sun-soft:#3A3020; --sky:#7FA4F0; --sky-soft:#1F2C48; color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding:32px max(16px,env(safe-area-inset-right,0px)) 56px max(16px,env(safe-area-inset-left,0px))}
+.wrap{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.2;text-wrap:balance;margin:0}
+h1{font-size:clamp(28px,5vw,40px)} h2{font-size:22px}
+p{margin:0}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:14px}
+.tag{display:inline-flex;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:4px 11px;border-radius:999px;width:fit-content}
+.t-pink{background:var(--pink-soft);color:var(--pink)} .t-mint{background:var(--mint-soft);color:var(--mint)}
+.t-sun{background:var(--sun-soft);color:var(--ink)} .t-sky{background:var(--sky-soft);color:var(--sky)}
+.muted{color:var(--muted)} .note{font-size:14px;color:var(--muted)}
+.fresh{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
+.fresh i{width:9px;height:9px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px var(--mint-soft)}
+.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.pebble{border-radius:20px;padding:16px 14px;display:flex;flex-direction:column;gap:2px}
+.pebble .n{font-family:var(--display);font-size:30px;font-weight:600;font-variant-numeric:tabular-nums}
+.pebble .l{font-size:13px;color:var(--muted);font-weight:700}
+.p1{background:var(--sky-soft)} .p2{background:var(--mint-soft)} .p3{background:var(--sun-soft)} .p4{background:var(--pink-soft)} .p5{background:var(--mint-soft)}
+@media (max-width:700px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.pebble:last-child{grid-column:span 2}}
+.chart{width:100%;height:auto;display:block}
+.chart text{fill:var(--muted);font:12px var(--body)}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+.camps{display:flex;flex-direction:column;gap:14px}
+.row{display:grid;grid-template-columns:200px 1fr 150px;gap:14px;align-items:center}
+.nm{font-weight:700;font-size:15px;min-width:0}
+.nm small{display:block;font-weight:600;color:var(--muted);font-size:12px}
+.bar{height:14px;border-radius:999px;background:var(--line);overflow:hidden}
+.bar span{display:block;height:100%;border-radius:999px;background:var(--mint)}
+.bar.live span{background:var(--sky)}
+.rp{font-size:13px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.rp b{color:var(--ink)}
+.pill{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:1px}
+.pill.live{background:var(--sky-soft);color:var(--sky)} .pill.finished{background:var(--mint-soft);color:var(--mint)}
+.pill.draft,.pill.paused{background:var(--sun-soft);color:var(--ink)}
+@media (max-width:600px){.row{grid-template-columns:1fr auto}.row .bar{grid-column:1 / -1;grid-row:2}}
+.ab{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ab div{border-radius:18px;padding:16px;background:var(--bg);display:flex;flex-direction:column;gap:2px}
+.ab .big{font-family:var(--display);font-size:26px;font-weight:600}
+@media (max-width:560px){.ab{grid-template-columns:1fr}}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:var(--bg);border-radius:999px;padding:6px 12px;font-size:14px;font-weight:700}
+footer{text-align:center;font-size:13px;color:var(--muted)}
+.err{color:var(--pink);font-weight:700}
+@media (prefers-reduced-motion:no-preference){.bar span{animation:grow 1s ease-out both}@keyframes grow{from{width:0}}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="card">
+    <span class="tag t-pink">Live dashboard</span>
+    <h1>FutureProofing outbound</h1>
+    <p class="muted">Client campaigns sent as Jess, updated from Instantly every two days. Opens are not tracked or counted, on purpose.</p>
+    <span class="fresh"><i></i><span id="updated">Loading the latest numbers…</span></span>
+  </section>
+
+  <section class="stats" id="stats" aria-label="Headline numbers"></section>
+
+  <section class="card" id="trend-card" hidden>
+    <span class="tag t-sky">Over time</span>
+    <div class="legend"><span><i style="background:var(--sky)"></i>Emails sent</span><span><i style="background:var(--pink)"></i>Replies</span><span><i style="background:var(--mint)"></i>Positive replies</span></div>
+    <div id="trend"></div>
+  </section>
+
+  <section class="card">
+    <span class="tag t-mint">Campaign by campaign</span>
+    <div class="legend"><span><i style="background:var(--sky)"></i>Still sending</span><span><i style="background:var(--mint)"></i>Finished</span><span>Bar = share of the list emailed so far</span></div>
+    <div class="camps" id="client"></div>
+  </section>
+
+  <section class="card" id="ab-card" hidden>
+    <span class="tag t-sun">Copy test</span>
+    <h2>Current copy (A) vs our original (B)</h2>
+    <div id="ab"></div>
+    <p class="note">First email only. Small numbers swing a lot, so we read the result once each side has about 100 sends.</p>
+  </section>
+
+  <section class="card" id="rec-card" hidden>
+    <span class="tag t-sky">Recruiting</span>
+    <h2>Candidate campaigns</h2>
+    <div class="camps" id="rec"></div>
+    <div class="chips" id="rec-wait"></div>
+  </section>
+
+  <footer>Goal: 2% or more positive replies. Numbers from Instantly.</footer>
+</div>
+
+<script>
+const fmt = n => n.toLocaleString("en-US");
+const pct = (a, b) => b ? (100 * a / b).toFixed(1) + "%" : "0%";
+const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+
+function row(c) {
+  const r = el("div", "row");
+  const w = c.leads ? Math.round(100 * c.reached / c.leads) : 0;
+  r.append(
+    el("div", "nm", `${c.name}<span class="pill ${c.status}">${c.status}</span><small>${fmt(c.reached)} of ${fmt(c.leads)} emailed</small>`),
+    el("div", "bar" + (c.status === "live" ? " live" : ""), `<span style="width:${w}%"></span>`),
+    el("div", "rp", `<b>${c.replies}</b> ${c.replies === 1 ? "reply" : "replies"} · <b>${c.positive}</b> positive`)
+  );
+  return r;
+}
+
+function trend(hist) {
+  if (hist.length < 2) return;
+  document.getElementById("trend-card").hidden = false;
+  const W = 820, H = 220, L = 44, R = 16, T = 12, B = 30;
+  const maxS = Math.max(...hist.map(h => h.emails_sent), 1);
+  const maxR = Math.max(...hist.map(h => h.replies), 5);
+  const x = i => L + (W - L - R) * (hist.length === 1 ? 0 : i / (hist.length - 1));
+  const yS = v => T + (H - T - B) * (1 - v / maxS);
+  const yR = v => T + (H - T - B) * (1 - v / maxR);
+  const line = (f, k) => hist.map((h, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${f(h[k]).toFixed(1)}`).join(" ");
+  const css = v => getComputedStyle(document.documentElement).getPropertyValue(v);
+  let g = "";
+  for (let i = 0; i <= 4; i++) {
+    const y = T + (H - T - B) * i / 4;
+    g += `<line x1="${L}" x2="${W - R}" y1="${y}" y2="${y}" stroke="${css("--line")}" />`;
+    g += `<text x="${L - 6}" y="${y + 4}" text-anchor="end">${fmt(Math.round(maxS * (1 - i / 4)))}</text>`;
+  }
+  const step = Math.ceil(hist.length / 6);
+  hist.forEach((h, i) => { if (i % step === 0 || i === hist.length - 1) g += `<text x="${x(i)}" y="${H - 8}" text-anchor="middle">${h.date.slice(5)}</text>`; });
+  const last = hist.length - 1;
+  document.getElementById("trend").innerHTML =
+    `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Emails sent and replies over time">${g}
+      <path d="${line(yS, "emails_sent")}" fill="none" stroke="${css("--sky")}" stroke-width="3" stroke-linecap="round"/>
+      <path d="${line(yR, "replies")}" fill="none" stroke="${css("--pink")}" stroke-width="3" stroke-linecap="round"/>
+      <path d="${line(yR, "positive")}" fill="none" stroke="${css("--mint")}" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="${x(last)}" cy="${yS(hist[last].emails_sent)}" r="5" fill="${css("--sky")}"/>
+      <circle cx="${x(last)}" cy="${yR(hist[last].replies)}" r="5" fill="${css("--pink")}"/></svg>
+     <p class="note">Emails sent on the left scale. Replies and positive replies use their own scale (top = ${maxR}).</p>`;
+}
+
+async function load() {
+  try {
+    const [d, hist] = await Promise.all([
+      fetch("data.json", { cache: "no-store" }).then(r => r.json()),
+      fetch("history.json", { cache: "no-store" }).then(r => r.json()).catch(() => [])
+    ]);
+    const t = d.total;
+    document.getElementById("updated").textContent = "Updated " + new Date(d.updated).toLocaleString("en-US",
+      { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZone: "America/New_York", timeZoneName: "short" });
+    document.getElementById("stats").innerHTML = `
+      <div class="pebble p1"><span class="n">${fmt(t.emails_sent)}</span><span class="l">emails sent</span></div>
+      <div class="pebble p2"><span class="n">${fmt(t.reached)}</span><span class="l">people emailed</span></div>
+      <div class="pebble p3"><span class="n">${fmt(t.replies)}</span><span class="l">replies · ${pct(t.replies, t.reached)}</span></div>
+      <div class="pebble p4"><span class="n">${fmt(t.positive)}</span><span class="l">positive · ${pct(t.positive, t.reached)}</span></div>
+      <div class="pebble p5"><span class="n">${pct(t.bounced, t.emails_sent)}</span><span class="l">bounced · ${t.unsubscribed} unsubscribed</span></div>`;
+    const client = d.campaigns.filter(c => c.kind === "client");
+    document.getElementById("client").replaceChildren(...client.map(row));
+    const ab = d.campaigns.filter(c => c.ab && c.ab.length > 1);
+    if (ab.length) {
+      document.getElementById("ab-card").hidden = false;
+      document.getElementById("ab").replaceChildren(...ab.map(c => {
+        const box = el("div", "camps", `<h3>${c.name}</h3>`);
+        const grid = el("div", "ab");
+        c.ab.forEach(v => grid.append(el("div", "", `<span class="tag ${v.variant === "A" ? "t-sun" : "t-mint"}">${v.variant === "A" ? "A · current" : "B · original"}</span>
+          <span class="big">${pct(v.replies, v.sent)}</span><span class="note">${v.replies} replies from ${fmt(v.sent)} sent</span>`)));
+        box.append(grid);
+        return box;
+      }));
+    }
+    const rec = d.campaigns.filter(c => c.kind === "recruiting");
+    if (rec.length) {
+      document.getElementById("rec-card").hidden = false;
+      document.getElementById("rec").replaceChildren(...rec.filter(c => c.status !== "draft").map(row));
+      const wait = rec.filter(c => c.status === "draft");
+      document.getElementById("rec-wait").innerHTML = wait.length
+        ? `<p class="note" style="width:100%">Built and waiting for candidate lists:</p>` + wait.map(c => `<span>${c.name}</span>`).join("")
+        : "";
+    }
+    trend(hist);
+  } catch (e) {
+    document.getElementById("updated").innerHTML = '<span class="err">Could not load the numbers. Try refreshing the page.</span>';
+  }
+}
+load();
+</script>
+</body>
+</html>
