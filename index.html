@@ -197,7 +197,7 @@ function trend(hist) {
   hist.forEach((h, i) => { if (i % step === 0 || i === last) g += `<text x="${x(i)}" y="${H - 8}" text-anchor="middle">${h.date.slice(5)}</text>`; });
   document.getElementById("trend").innerHTML =
     `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Emails sent and replies over time">${g}
-      <path d="${line(yS, "emails_sent")} L${x(last)},${H - B} L${L},${H - B} Z" fill="${css("--sky-soft")}"/>
+      <path d="${line(yS, "emails_sent")} L${x(last)},${H - B} L${L},${H - B} Z" fill="${css("--sky")}" fill-opacity=".12"/>
       <path d="${line(yS, "emails_sent")}" fill="none" stroke="${css("--sky")}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="${line(yR, "replies")}" fill="none" stroke="${css("--pink")}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="${line(yR, "positive")}" fill="none" stroke="${css("--mint")}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
