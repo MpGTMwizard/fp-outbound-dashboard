@@ -18,5 +18,15 @@
   "positive": 0,
   "bounced": 7,
   "unsubscribed": 0
+ },
+ {
+  "date": "2026-11-13",
+  "leads": 763,
+  "reached": 682,
+  "emails_sent": 1165,
+  "replies": 6,
+  "positive": 0,
+  "bounced": 8,
+  "unsubscribed": 0
  }
 ]
