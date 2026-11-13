@@ -7,80 +7,123 @@
 <title>FutureProofing Outbound</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;600;700;800&display=swap">
 <style>
-/* Layout: one soft column of rounded cards; headline pebbles, a trend chart, campaign bars, A/B and recruiting below */
+/* Layout: soft pastel cards on a dotted sky; big progress rings up top, one ring card per campaign, bubbles for the copy test */
 :root{
-  --bg:#F2F6FB; --paper:#FFFFFF; --ink:#1F2A3D; --muted:#5E6B80; --line:#DCE4EF;
-  --pink:#E8577A; --pink-soft:#FDE6EC; --mint:#1E9E8F; --mint-soft:#DDF4F0;
-  --sun:#F2B33D; --sun-soft:#FFF2D6; --sky:#4C7BD9; --sky-soft:#E3ECFC;
+  --bg:#EEF3FA; --dot:#DCE5F2; --paper:#FFFFFF; --ink:#24304A; --muted:#66728A; --track:#E7EDF6;
+  --pink:#EC6A8C; --pink-soft:#FFE7EE; --mint:#26A99A; --mint-soft:#DCF5F1;
+  --sun:#F3B23F; --sun-soft:#FFF1D4; --sky:#5B86E5; --sky-soft:#E4ECFD; --lilac:#9C86E0; --lilac-soft:#EFEAFD;
+  --shadow:0 10px 30px -12px rgba(60,80,130,.25);
   --display:"Fredoka","Trebuchet MS",system-ui,sans-serif;
   --body:"Nunito","Segoe UI",system-ui,sans-serif;
   color-scheme:light;
 }
 @media (prefers-color-scheme: dark){:root{
-  --bg:#141A26; --paper:#1C2434; --ink:#EAF0FA; --muted:#A3AEC2; --line:#2C3850;
-  --pink:#FF7F9C; --pink-soft:#3A2230; --mint:#4FD1C0; --mint-soft:#183632;
-  --sun:#F7C463; --sun-soft:#3A3020; --sky:#7FA4F0; --sky-soft:#1F2C48; color-scheme:dark}}
+  --bg:#151B28; --dot:#1E2638; --paper:#1D2536; --ink:#EDF2FB; --muted:#A6B1C6; --track:#2B3549;
+  --pink:#FF86A4; --pink-soft:#3B2432; --mint:#56D6C5; --mint-soft:#18372F;
+  --sun:#F8C766; --sun-soft:#3A311F; --sky:#86A8F2; --sky-soft:#1F2B47; --lilac:#B7A6F2; --lilac-soft:#2A2645;
+  --shadow:0 10px 30px -12px rgba(0,0,0,.6); color-scheme:dark}}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
-  padding:32px max(16px,env(safe-area-inset-right,0px)) 56px max(16px,env(safe-area-inset-left,0px))}
-.wrap{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
-h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.2;text-wrap:balance;margin:0}
-h1{font-size:clamp(28px,5vw,40px)} h2{font-size:22px}
+body{margin:0;color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;
+  background:var(--bg) radial-gradient(var(--dot) 1.5px,transparent 1.6px) 0 0/22px 22px;
+  padding:28px max(16px,env(safe-area-inset-right,0px)) 56px max(16px,env(safe-area-inset-left,0px))}
+.wrap{max-width:940px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,5.5vw,44px)} h2{font-size:22px} h3{font-size:18px;font-weight:500}
 p{margin:0}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:14px}
-.tag{display:inline-flex;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:4px 11px;border-radius:999px;width:fit-content}
+.card{background:var(--paper);border-radius:28px;padding:24px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:16px}
+.tag{display:inline-flex;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:999px;width:fit-content}
 .t-pink{background:var(--pink-soft);color:var(--pink)} .t-mint{background:var(--mint-soft);color:var(--mint)}
-.t-sun{background:var(--sun-soft);color:var(--ink)} .t-sky{background:var(--sky-soft);color:var(--sky)}
-.muted{color:var(--muted)} .note{font-size:14px;color:var(--muted)}
-.fresh{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
-.fresh i{width:9px;height:9px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px var(--mint-soft)}
-.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
-.pebble{border-radius:20px;padding:16px 14px;display:flex;flex-direction:column;gap:2px}
-.pebble .n{font-family:var(--display);font-size:30px;font-weight:600;font-variant-numeric:tabular-nums}
-.pebble .l{font-size:13px;color:var(--muted);font-weight:700}
-.p1{background:var(--sky-soft)} .p2{background:var(--mint-soft)} .p3{background:var(--sun-soft)} .p4{background:var(--pink-soft)} .p5{background:var(--mint-soft)}
-@media (max-width:700px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.pebble:last-child{grid-column:span 2}}
+.t-sun{background:var(--sun-soft);color:var(--ink)} .t-sky{background:var(--sky-soft);color:var(--sky)} .t-lilac{background:var(--lilac-soft);color:var(--lilac)}
+.note{font-size:14px;color:var(--muted)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding:30px 28px}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+.hero::before{width:220px;height:220px;right:-60px;top:-80px;background:var(--pink-soft)}
+.hero::after{width:140px;height:140px;right:90px;bottom:-70px;background:var(--mint-soft)}
+.hero>*{position:relative;z-index:1}
+.hero .lead{color:var(--muted);max-width:56ch}
+.fresh{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--muted);background:var(--bg);padding:6px 14px 6px 10px;border-radius:999px;width:fit-content}
+.fresh i{width:10px;height:10px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px var(--mint-soft)}
+@media (prefers-reduced-motion:no-preference){.fresh i{animation:pulse 2.4s ease-in-out infinite}@keyframes pulse{50%{box-shadow:0 0 0 7px transparent}}}
+
+/* big rings */
+.rings{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.ringcard{background:var(--paper);border-radius:28px;box-shadow:var(--shadow);padding:20px 14px 18px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;min-width:0}
+.ring{width:132px;max-width:100%;aspect-ratio:1;position:relative}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring .mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring .big{font-family:var(--display);font-size:28px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1}
+.ring .sub{font-size:12px;color:var(--muted);font-weight:700;margin-top:4px}
+.ringcard h3{font-size:16px}
+.ringcard p{font-size:13px;color:var(--muted)}
+@media (max-width:760px){.rings{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.arc{transition:stroke-dashoffset 1.2s cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion:reduce){.arc{transition:none}}
+
+/* bubbles */
+.bubbles{display:flex;flex-wrap:wrap;gap:12px}
+.bubble{display:flex;align-items:center;gap:12px;background:var(--paper);box-shadow:var(--shadow);border-radius:999px;padding:10px 20px 10px 10px;flex:1 1 180px}
+.bubble b{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:600;font-size:18px;font-variant-numeric:tabular-nums;flex:none}
+.bubble span{font-weight:700;font-size:14px;color:var(--muted)}
+.b-sky b{background:var(--sky-soft);color:var(--sky)} .b-pink b{background:var(--pink-soft);color:var(--pink)}
+.b-sun b{background:var(--sun-soft);color:var(--ink)} .b-lilac b{background:var(--lilac-soft);color:var(--lilac)}
+
+/* campaigns */
+.camps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:820px){.camps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.camps{grid-template-columns:1fr}}
+.camp{background:var(--bg);border-radius:24px;padding:16px;display:flex;gap:14px;align-items:center;min-width:0}
+.camp .ring{width:78px;flex:none}
+.camp .ring .big{font-size:17px}
+.camp .info{display:flex;flex-direction:column;gap:6px;min-width:0}
+.camp .nm{font-family:var(--display);font-weight:500;font-size:17px;line-height:1.2}
+.camp small{color:var(--muted);font-size:12px;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;font-weight:800;border-radius:999px;padding:3px 9px;background:var(--paper);white-space:nowrap}
+.chip.live{color:var(--sky)} .chip.finished{color:var(--mint)} .chip.draft,.chip.paused{color:var(--sun)}
+.chip.pos{color:var(--pink)}
+
+/* trend */
 .chart{width:100%;height:auto;display:block}
 .chart text{fill:var(--muted);font:12px var(--body)}
-.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--muted);font-weight:700}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
-.camps{display:flex;flex-direction:column;gap:14px}
-.row{display:grid;grid-template-columns:200px 1fr 150px;gap:14px;align-items:center}
-.nm{font-weight:700;font-size:15px;min-width:0}
-.nm small{display:block;font-weight:600;color:var(--muted);font-size:12px}
-.bar{height:14px;border-radius:999px;background:var(--line);overflow:hidden}
-.bar span{display:block;height:100%;border-radius:999px;background:var(--mint)}
-.bar.live span{background:var(--sky)}
-.rp{font-size:13px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
-.rp b{color:var(--ink)}
-.pill{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:1px}
-.pill.live{background:var(--sky-soft);color:var(--sky)} .pill.finished{background:var(--mint-soft);color:var(--mint)}
-.pill.draft,.pill.paused{background:var(--sun-soft);color:var(--ink)}
-@media (max-width:600px){.row{grid-template-columns:1fr auto}.row .bar{grid-column:1 / -1;grid-row:2}}
-.ab{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.ab div{border-radius:18px;padding:16px;background:var(--bg);display:flex;flex-direction:column;gap:2px}
-.ab .big{font-family:var(--display);font-size:26px;font-weight:600}
+
+/* a/b */
+.ab{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.abv{border-radius:24px;padding:18px;display:flex;align-items:center;gap:14px}
+.abv.a{background:var(--sun-soft)} .abv.b{background:var(--mint-soft)}
+.abv .ring{width:90px;flex:none}
 @media (max-width:560px){.ab{grid-template-columns:1fr}}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chips span{background:var(--bg);border-radius:999px;padding:6px 12px;font-size:14px;font-weight:700}
-footer{text-align:center;font-size:13px;color:var(--muted)}
-.err{color:var(--pink);font-weight:700}
-@media (prefers-reduced-motion:no-preference){.bar span{animation:grow 1s ease-out both}@keyframes grow{from{width:0}}}
+
+/* recruiting */
+.wait{display:flex;flex-wrap:wrap;gap:8px}
+.wait span{background:var(--lilac-soft);color:var(--ink);border-radius:999px;padding:7px 14px;font-size:14px;font-weight:700}
+footer{text-align:center;font-size:13px;color:var(--muted);font-weight:700}
+.err{color:var(--pink);font-weight:800}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <section class="card">
+  <section class="card hero">
     <span class="tag t-pink">Live dashboard</span>
     <h1>FutureProofing outbound</h1>
-    <p class="muted">Client campaigns sent as Jess, updated from Instantly every two days. Opens are not tracked or counted, on purpose.</p>
+    <p class="lead">Client campaigns sent as Jess, refreshed from Instantly every two days. Opens are not tracked or counted, on purpose.</p>
     <span class="fresh"><i></i><span id="updated">Loading the latest numbers…</span></span>
   </section>
 
-  <section class="stats" id="stats" aria-label="Headline numbers"></section>
+  <section class="rings" id="rings" aria-label="Headline numbers"></section>
+  <section class="bubbles" id="bubbles" aria-label="Totals"></section>
+
+  <section class="card">
+    <span class="tag t-mint">Campaign by campaign</span>
+    <p class="note">Each ring shows how much of the list has had the first email.</p>
+    <div class="camps" id="client"></div>
+  </section>
 
   <section class="card" id="trend-card" hidden>
     <span class="tag t-sky">Over time</span>
@@ -88,43 +131,50 @@ footer{text-align:center;font-size:13px;color:var(--muted)}
     <div id="trend"></div>
   </section>
 
-  <section class="card">
-    <span class="tag t-mint">Campaign by campaign</span>
-    <div class="legend"><span><i style="background:var(--sky)"></i>Still sending</span><span><i style="background:var(--mint)"></i>Finished</span><span>Bar = share of the list emailed so far</span></div>
-    <div class="camps" id="client"></div>
-  </section>
-
   <section class="card" id="ab-card" hidden>
     <span class="tag t-sun">Copy test</span>
     <h2>Current copy (A) vs our original (B)</h2>
-    <div id="ab"></div>
-    <p class="note">First email only. Small numbers swing a lot, so we read the result once each side has about 100 sends.</p>
+    <div id="ab" style="display:flex;flex-direction:column;gap:16px"></div>
+    <p class="note">Reply rate on the first email. Small numbers swing a lot, so we read the result once each side has about 100 sends.</p>
   </section>
 
   <section class="card" id="rec-card" hidden>
-    <span class="tag t-sky">Recruiting</span>
+    <span class="tag t-lilac">Recruiting</span>
     <h2>Candidate campaigns</h2>
     <div class="camps" id="rec"></div>
-    <div class="chips" id="rec-wait"></div>
+    <div id="rec-wait"></div>
   </section>
 
-  <footer>Goal: 2% or more positive replies. Numbers from Instantly.</footer>
+  <footer>Goal: 2% or more positive replies · Numbers from Instantly</footer>
 </div>
 
 <script>
 const fmt = n => n.toLocaleString("en-US");
-const pct = (a, b) => b ? (100 * a / b).toFixed(1) + "%" : "0%";
-const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+const rate = (a, b) => b ? 100 * a / b : 0;
+const pct = (v, d = 1) => v.toFixed(d) + "%";
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 
-function row(c) {
-  const r = el("div", "row");
-  const w = c.leads ? Math.round(100 * c.reached / c.leads) : 0;
-  r.append(
-    el("div", "nm", `${c.name}<span class="pill ${c.status}">${c.status}</span><small>${fmt(c.reached)} of ${fmt(c.leads)} emailed</small>`),
-    el("div", "bar" + (c.status === "live" ? " live" : ""), `<span style="width:${w}%"></span>`),
-    el("div", "rp", `<b>${c.replies}</b> ${c.replies === 1 ? "reply" : "replies"} · <b>${c.positive}</b> positive`)
-  );
-  return r;
+/* A round gauge. fill is 0..1; the arc animates in from empty after first paint. */
+function ring(fill, color, big, sub) {
+  const r = 42, c = 2 * Math.PI * r, f = Math.max(0, Math.min(1, fill));
+  return `<div class="ring"><svg viewBox="0 0 100 100" aria-hidden="true">
+      <circle cx="50" cy="50" r="${r}" fill="none" stroke="var(--track)" stroke-width="11"/>
+      <circle class="arc" cx="50" cy="50" r="${r}" fill="none" stroke="var(${color})" stroke-width="11" stroke-linecap="round"
+        stroke-dasharray="${c.toFixed(1)}" stroke-dashoffset="${c.toFixed(1)}" data-to="${(c * (1 - f)).toFixed(1)}" ${f === 0 ? 'stroke-opacity="0"' : ""}/>
+    </svg><div class="mid"><span class="big">${big}</span>${sub ? `<span class="sub">${sub}</span>` : ""}</div></div>`;
+}
+const animate = () => requestAnimationFrame(() => requestAnimationFrame(() =>
+  document.querySelectorAll(".arc[data-to]").forEach(a => { a.style.strokeDashoffset = a.dataset.to; a.removeAttribute("data-to"); })));
+
+function campCard(c) {
+  const f = c.leads ? c.reached / c.leads : 0;
+  const color = c.status === "live" ? "--sky" : c.status === "finished" ? "--mint" : "--sun";
+  return `<div class="camp">${ring(f, color, Math.round(100 * f) + "%", "")}
+    <div class="info"><span class="nm">${c.name}</span>
+      <small>${fmt(c.reached)} of ${fmt(c.leads)} emailed</small>
+      <div class="chips"><span class="chip ${c.status}">${c.status}</span>
+        <span class="chip">${c.replies} ${c.replies === 1 ? "reply" : "replies"}</span>
+        <span class="chip pos">${c.positive} positive</span></div></div></div>`;
 }
 
 function trend(hist) {
@@ -133,28 +183,27 @@ function trend(hist) {
   const W = 820, H = 220, L = 44, R = 16, T = 12, B = 30;
   const maxS = Math.max(...hist.map(h => h.emails_sent), 1);
   const maxR = Math.max(...hist.map(h => h.replies), 5);
-  const x = i => L + (W - L - R) * (hist.length === 1 ? 0 : i / (hist.length - 1));
+  const x = i => L + (W - L - R) * i / (hist.length - 1);
   const yS = v => T + (H - T - B) * (1 - v / maxS);
   const yR = v => T + (H - T - B) * (1 - v / maxR);
   const line = (f, k) => hist.map((h, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${f(h[k]).toFixed(1)}`).join(" ");
-  const css = v => getComputedStyle(document.documentElement).getPropertyValue(v);
   let g = "";
   for (let i = 0; i <= 4; i++) {
     const y = T + (H - T - B) * i / 4;
-    g += `<line x1="${L}" x2="${W - R}" y1="${y}" y2="${y}" stroke="${css("--line")}" />`;
+    g += `<line x1="${L}" x2="${W - R}" y1="${y}" y2="${y}" stroke="${css("--track")}"/>`;
     g += `<text x="${L - 6}" y="${y + 4}" text-anchor="end">${fmt(Math.round(maxS * (1 - i / 4)))}</text>`;
   }
-  const step = Math.ceil(hist.length / 6);
-  hist.forEach((h, i) => { if (i % step === 0 || i === hist.length - 1) g += `<text x="${x(i)}" y="${H - 8}" text-anchor="middle">${h.date.slice(5)}</text>`; });
-  const last = hist.length - 1;
+  const step = Math.ceil(hist.length / 6), last = hist.length - 1;
+  hist.forEach((h, i) => { if (i % step === 0 || i === last) g += `<text x="${x(i)}" y="${H - 8}" text-anchor="middle">${h.date.slice(5)}</text>`; });
   document.getElementById("trend").innerHTML =
     `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Emails sent and replies over time">${g}
-      <path d="${line(yS, "emails_sent")}" fill="none" stroke="${css("--sky")}" stroke-width="3" stroke-linecap="round"/>
-      <path d="${line(yR, "replies")}" fill="none" stroke="${css("--pink")}" stroke-width="3" stroke-linecap="round"/>
-      <path d="${line(yR, "positive")}" fill="none" stroke="${css("--mint")}" stroke-width="3" stroke-linecap="round"/>
-      <circle cx="${x(last)}" cy="${yS(hist[last].emails_sent)}" r="5" fill="${css("--sky")}"/>
-      <circle cx="${x(last)}" cy="${yR(hist[last].replies)}" r="5" fill="${css("--pink")}"/></svg>
-     <p class="note">Emails sent on the left scale. Replies and positive replies use their own scale (top = ${maxR}).</p>`;
+      <path d="${line(yS, "emails_sent")} L${x(last)},${H - B} L${L},${H - B} Z" fill="${css("--sky-soft")}"/>
+      <path d="${line(yS, "emails_sent")}" fill="none" stroke="${css("--sky")}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="${line(yR, "replies")}" fill="none" stroke="${css("--pink")}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="${line(yR, "positive")}" fill="none" stroke="${css("--mint")}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="${x(last)}" cy="${yS(hist[last].emails_sent)}" r="6" fill="${css("--sky")}" stroke="${css("--paper")}" stroke-width="3"/>
+      <circle cx="${x(last)}" cy="${yR(hist[last].replies)}" r="6" fill="${css("--pink")}" stroke="${css("--paper")}" stroke-width="3"/></svg>
+     <p class="note">Emails sent on the left scale. Replies use their own scale (top = ${maxR}).</p>`;
 }
 
 async function load() {
@@ -166,36 +215,38 @@ async function load() {
     const t = d.total;
     document.getElementById("updated").textContent = "Updated " + new Date(d.updated).toLocaleString("en-US",
       { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZone: "America/New_York", timeZoneName: "short" });
-    document.getElementById("stats").innerHTML = `
-      <div class="pebble p1"><span class="n">${fmt(t.emails_sent)}</span><span class="l">emails sent</span></div>
-      <div class="pebble p2"><span class="n">${fmt(t.reached)}</span><span class="l">people emailed</span></div>
-      <div class="pebble p3"><span class="n">${fmt(t.replies)}</span><span class="l">replies · ${pct(t.replies, t.reached)}</span></div>
-      <div class="pebble p4"><span class="n">${fmt(t.positive)}</span><span class="l">positive · ${pct(t.positive, t.reached)}</span></div>
-      <div class="pebble p5"><span class="n">${pct(t.bounced, t.emails_sent)}</span><span class="l">bounced · ${t.unsubscribed} unsubscribed</span></div>`;
-    const client = d.campaigns.filter(c => c.kind === "client");
-    document.getElementById("client").replaceChildren(...client.map(row));
+    const emailed = rate(t.reached, t.leads), rr = rate(t.replies, t.reached), pr = rate(t.positive, t.reached);
+    const delivered = 100 - rate(t.bounced, t.emails_sent);
+    document.getElementById("rings").innerHTML = `
+      <div class="ringcard">${ring(emailed / 100, "--sky", pct(emailed, 0), "of the list")}<h3>Emailed</h3><p>${fmt(t.reached)} of ${fmt(t.leads)} people</p></div>
+      <div class="ringcard">${ring(rr / 2, "--lilac", pct(rr), "reply rate")}<h3>Replies</h3><p>${t.replies} so far</p></div>
+      <div class="ringcard">${ring(pr / 2, "--pink", pct(pr), "of 2% goal")}<h3>Positive</h3><p>${t.positive} interested</p></div>
+      <div class="ringcard">${ring(delivered / 100, "--mint", pct(delivered), "delivered")}<h3>Healthy inboxes</h3><p>${t.bounced} bounced · ${t.unsubscribed} unsubscribed</p></div>`;
+    document.getElementById("bubbles").innerHTML = `
+      <div class="bubble b-sky"><b>${t.emails_sent >= 1000 ? (t.emails_sent / 1000).toFixed(1) + "k" : t.emails_sent}</b><span>emails sent</span></div>
+      <div class="bubble b-lilac"><b>${d.campaigns.filter(c => c.kind === "client").length}</b><span>client campaigns</span></div>
+      <div class="bubble b-sun"><b>${d.campaigns.filter(c => c.kind === "client" && c.status === "live").length}</b><span>still sending</span></div>
+      <div class="bubble b-pink"><b>${fmt(t.leads - t.reached)}</b><span>people still to email</span></div>`;
+    document.getElementById("client").innerHTML = d.campaigns.filter(c => c.kind === "client").map(campCard).join("");
+
     const ab = d.campaigns.filter(c => c.ab && c.ab.length > 1);
     if (ab.length) {
       document.getElementById("ab-card").hidden = false;
-      document.getElementById("ab").replaceChildren(...ab.map(c => {
-        const box = el("div", "camps", `<h3>${c.name}</h3>`);
-        const grid = el("div", "ab");
-        c.ab.forEach(v => grid.append(el("div", "", `<span class="tag ${v.variant === "A" ? "t-sun" : "t-mint"}">${v.variant === "A" ? "A · current" : "B · original"}</span>
-          <span class="big">${pct(v.replies, v.sent)}</span><span class="note">${v.replies} replies from ${fmt(v.sent)} sent</span>`)));
-        box.append(grid);
-        return box;
-      }));
+      document.getElementById("ab").innerHTML = ab.map(c => `<div style="display:flex;flex-direction:column;gap:10px"><h3>${c.name}</h3><div class="ab">` +
+        c.ab.map(v => { const r = rate(v.replies, v.sent); return `<div class="abv ${v.variant.toLowerCase()}">${ring(r / 2, v.variant === "A" ? "--sun" : "--mint", pct(r), "")}
+          <div><span class="tag ${v.variant === "A" ? "t-sun" : "t-mint"}">${v.variant === "A" ? "A · current" : "B · original"}</span>
+          <p class="note" style="margin-top:6px">${v.replies} replies from ${fmt(v.sent)} sent</p></div></div>`; }).join("") + `</div></div>`).join("");
     }
     const rec = d.campaigns.filter(c => c.kind === "recruiting");
     if (rec.length) {
       document.getElementById("rec-card").hidden = false;
-      document.getElementById("rec").replaceChildren(...rec.filter(c => c.status !== "draft").map(row));
+      document.getElementById("rec").innerHTML = rec.filter(c => c.status !== "draft").map(campCard).join("");
       const wait = rec.filter(c => c.status === "draft");
       document.getElementById("rec-wait").innerHTML = wait.length
-        ? `<p class="note" style="width:100%">Built and waiting for candidate lists:</p>` + wait.map(c => `<span>${c.name}</span>`).join("")
-        : "";
+        ? `<p class="note" style="margin-bottom:10px">Built and waiting for candidate lists:</p><div class="wait">${wait.map(c => `<span>${c.name}</span>`).join("")}</div>` : "";
     }
     trend(hist);
+    animate();
   } catch (e) {
     document.getElementById("updated").innerHTML = '<span class="err">Could not load the numbers. Try refreshing the page.</span>';
   }
